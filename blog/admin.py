@@ -6,7 +6,7 @@ from blog.models import Category, Tag, Post
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_at', 'updated_at', 'category', 'author']
-    fields = ['title', 'body', 'abstract', 'category', 'tags']
+    fields = ['title', 'body', 'category', 'tags']
 
     def save_model(self, request, obj, form, change):
         obj.author = request.user

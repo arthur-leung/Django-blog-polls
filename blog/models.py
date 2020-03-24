@@ -1,9 +1,11 @@
+import markdown
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.html import strip_tags
 
 
 class Category(models.Model):
@@ -44,6 +46,12 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         self.updated_at = timezone.now()
+
+        md = markdown.Markdown(extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+        ])
+        self.abstract = strip_tags(md.convert(self.body))[:54]
         super().save(*args, **kwargs)
 
     def __str__(self):
