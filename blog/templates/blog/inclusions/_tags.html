@@ -1,9 +1,9 @@
 <div class="widget widget-tag-cloud">
-    <h3 class="widget-title">标签云</h3>
+    <h3 class="widget-title">标签</h3>
     <ul>
         {% for tag in tag_list %}
             <li>
-                <a href="#">{{ tag.name }}</a>
+                <a href="{% url 'blog:tag' tag.id %}">{{ tag.name }}</a>
             </li>
         {% endfor %}
     </ul>
