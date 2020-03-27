@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% load comments_extras %}
 <link rel="stylesheet" type="text/css" href="{% static 'blog/css/highlight.custom.css' %}">
 {% block header %}
     <header class="masthead" style="background-image: url({% static 'blog/img/post-bg.jpg' %})">
@@ -20,22 +21,10 @@
     </header>
 {% endblock header %}
 {% block container %}
-
     <p>{{ post.body|safe }}</p>
+    <hr>
+    <p><h3>添加评论</h3></p>
+    {% show_comment_form post %}
 {% endblock container %}
 {% block toc %}
-    <div class="widget widget-recent-posts">
-        <h3 class="widget-title">最新文章</h3>
-        <ul>
-            <li>
-                <a href="#">Django 博客开发入门教程：前言</a>
-            </li>
-            <li>
-                <a href="#">Django 博客使用 Markdown 自动生成文章目录</a>
-            </li>
-            <li>
-                <a href="#">部署 Django 博客</a>
-            </li>
-        </ul>
-    </div>
 {% endblock toc %}
