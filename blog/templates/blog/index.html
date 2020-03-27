@@ -7,8 +7,8 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
-                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        <h1>Banner</h1>
+                        <span class="subheading">The Emperor's New Banner</span>
                     </div>
                 </div>
             </div>
@@ -17,29 +17,27 @@
 {% endblock header %}
 
 {% block container %}
-    <div class="col-lg-8 col-md-10 mx-auto">
-        {% for post in post_list %}
-            <div class="post-preview">
-                <a href="{% url 'blog:detail' post.id %}">
-                    <h2 class="post-title">
-                        {{ post.title }}
-                    </h2>
-                    <h3 class="post-subtitle">
-                        {{ post.abstract }}
-                    </h3>
-                </a>
-                <p class="post-meta">作者：
-                    <a href="#">{{ post.author.get_username }}</a>
-                    发布于 {{ post.created_at }}</p>
-            </div>
-            <hr>
-        {% empty %}
-            <div class="post-preview">
-                <h3 class="post-subtitle">暂无数据</h3>
-            </div>
-        {% endfor %}
-        <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+    {% for post in post_list %}
+        <div class="post-preview">
+            <a href="{% url 'blog:detail' post.id %}">
+                <h2 class="post-title">
+                    {{ post.title }}
+                </h2>
+                <h3 class="post-subtitle">
+                    {{ post.abstract }}
+                </h3>
+            </a>
+            <p class="post-meta">作者：
+                <a href="#">{{ post.author.get_username }}</a>
+                发布于 {{ post.created_at }}</p>
         </div>
+        <hr>
+    {% empty %}
+        <div class="post-preview">
+            <h3 class="post-subtitle">暂无数据</h3>
+        </div>
+    {% endfor %}
+    <div class="clearfix">
+        <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
     </div>
 {% endblock container %}
