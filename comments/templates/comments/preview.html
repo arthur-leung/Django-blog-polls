@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load comments_extras %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/css/highlight.custom.css' %}">
+{% block header %}
+    <header class="masthead" style="background-image: url({% static 'blog/img/post-bg.jpg' %})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h1>{{ post.title }}</h1>
+                        <h2 class="subheading">{{ post.abstract }}</h2>
+                        <span class="meta">作者
+              <a href="#">{{ post.author.get_username }}</a>
+               发布于 {{ post.created_at }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock header %}
+{% block container %}
+    <p>{{ post.body|safe }}</p>
+    <hr>
+    <p><h3>添加评论</h3></p>
+    {% show_comment_form post %}
+{% endblock container %}
+{% block toc %}
+{% endblock toc %}
